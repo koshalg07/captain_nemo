@@ -38,23 +38,34 @@ class Home extends StatelessWidget{
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Color.fromRGBO(230, 180, 190, 0.9),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Image(
-              alignment: Alignment.center,
-              image: AssetImage('lib/assets/icons/unnamed.png'),
-              width: 200,
-            ),
-            const SizedBox(
-              height:100.0,
-            ),
-            SizedBox(
-              width:200.0,
-              height:50.0,
-              child: ElevatedButton(onPressed: () {
+      body:
+        Center(child:Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+              const Image(
+                alignment: Alignment.center,
+                image: AssetImage('lib/assets/icons/unnamed.png'),
+                width: 180,
+              ),
+              const SizedBox(
+                height:40.0,
+              ) ,
+              const Text(
+                  "GOLDEN HOUR",
+                  style:TextStyle(
+                    color: Colors.black,
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height:100.0,
+                ) ,
+              SizedBox(
+                width:250.0,
+                height:50.0,
+                child: ElevatedButton(onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomePage()),
@@ -65,12 +76,12 @@ class Home extends StatelessWidget{
                 style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               ),
 
-            ),
-            const SizedBox(
-              height:40.0,
-            ),
-            SizedBox(
-              width:200.0,
+              ),
+              const SizedBox(
+              height:20.0,
+              ),
+              SizedBox(
+              width:250.0,
               height:50.0,
               child: ElevatedButton(onPressed: (){
                 Navigator.push(
@@ -82,13 +93,13 @@ class Home extends StatelessWidget{
                   style: TextStyle(fontSize: 20)),
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               ),
-            ),
-            const SizedBox(
+              ),
+              const SizedBox(
               height:40.0,
-            ),
-          ],
-        )
-      ),
+              ),
+            ],
+          ),
+        ),
     );
   }
 }
@@ -241,7 +252,7 @@ class _LoginScreenState  extends State<LoginScreen> {
                   User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
                   print(user);
                   if(user != null){
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> ProfileScreen()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyUserApp()));
 
                   }
                 },
@@ -1566,4 +1577,167 @@ class Page5 extends StatelessWidget {
     );
   }
 }
+
+// USER SIDE
+
+
+class MyUserApp extends StatelessWidget {
+  const MyUserApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        primarySwatch: Colors.red,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          centerTitle: true,
+          title: const Text('GOLDEN HOUR')
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+
+              child:const Image(image:AssetImage('lib/assets/icons/map1.jpg'),width:350),
+            ),
+
+            new SizedBox(height: 40
+            ),
+            new SizedBox(
+              width: 350.0,
+              height: 50,
+              child: ElevatedButton(onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyUser2App()),
+                );
+              },
+                  child:Text("Book Now",
+                      style: TextStyle(fontSize: 22)),
+                  style: ElevatedButton.styleFrom(shape: const StadiumBorder())
+              ),
+            ),
+          ],
+        ),
+
+      ),
+    );
+  }
+}
+
+class MyUser2App extends StatelessWidget {
+  const MyUser2App({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        primarySwatch: Colors.red,
+      ),
+      home: const MyHome2Page(),
+    );
+  }
+}
+
+class MyHome2Page extends StatefulWidget {
+  const MyHome2Page({super.key});
+
+
+  @override
+  State<MyHome2Page> createState() => _MyHome2PageState();
+}
+
+class _MyHome2PageState extends State<MyHome2Page> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black54,
+      appBar: AppBar(
+          centerTitle: true,
+          title: const Text('GOLDEN HOUR')
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height-109,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image:AssetImage('lib/assets/icons/map1.jpg')
+                    ),
+                  ),
+                ),
+
+                Container(
+
+                  alignment: Alignment.topCenter,
+                  child:ButtonTheme(
+                    minWidth: 400,
+                    child: OutlinedButton(
+
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.white,
+
+                      ),
+                      onPressed: (){},
+                      child: Text('Ambulance 1',
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                  ),),
+
+
+
+
+              ],
+            ),
+
+
+          ],
+        ),
+
+      ),
+
+
+    );
+  }
+}
+
+
 
